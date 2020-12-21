@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import LanguageContext from "../contexts/LanguageContext";
+import ColorContext from "../contexts/ColorContext";
 import UserCreate from "./UserCreate";
 
 class App extends Component {
@@ -27,7 +29,13 @@ class App extends Component {
             style={{ cursor: "pointer" }}
           />
         </div>
-        <UserCreate />
+        {/* when we render this, we need to provide a 'value' prop 
+        the provider gives you access to change the default value*/}
+        <ColorContext.Provider value={"red"}>
+          <LanguageContext.Provider value={this.state.language}>
+            <UserCreate />
+          </LanguageContext.Provider>
+        </ColorContext.Provider>
       </div>
     );
   }
