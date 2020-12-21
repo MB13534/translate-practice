@@ -11,6 +11,10 @@ import ColorContext from "../contexts/ColorContext";
 class Button extends Component {
   // static contextType = LanguageContext;
 
+  renderSubmit(language) {
+    return language === "english" ? "Submit" : "Voorleggen";
+  }
+
   renderButton(colorValue) {
     return (
       <button className={`ui button ${colorValue}`}>
@@ -18,9 +22,7 @@ class Button extends Component {
         {/* whenever we use the consumer we always pass one child function
     this always gets called by the consumer with whatever value is in the pipe */}
         <LanguageContext.Consumer>
-          {(languageValue) =>
-            languageValue === "english" ? "Submit" : "Voorleggen"
-          }
+          {({ language }) => this.renderSubmit(language)}
         </LanguageContext.Consumer>
       </button>
     );
